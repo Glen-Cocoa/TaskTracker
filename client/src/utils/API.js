@@ -9,10 +9,11 @@ const instance = axios.create({
   }
 })
 
-const formQuery = (endpoint, type, id) => {
-  if(type && id) {
-    console.log(type, id)
-    return `${endpoint}/${type}/${id}`
+const formQuery = (endpoint, config) => {
+  if(config?.type && config?.id) {
+    return `${endpoint}/${config.type}/${config.id}`
+  } else if (!config?.type && config?.id) {
+    return `${endpoint}/${config.id}`
   } else {
     return `${endpoint}`
   }
@@ -22,7 +23,7 @@ const API = {
   users: {
     get: async (type, id) => {
       try {
-        return await instance.get(formQuery(ENDPOINTS.USERS, type, id))
+        return await instance.get(formQuery(ENDPOINTS.USERS, {type, id}))
       } catch (e) {
         console.error(e)
       }
@@ -31,57 +32,98 @@ const API = {
   customers: {
     get: async (type, id) => {
       try {
-        return await instance.get(formQuery(ENDPOINTS.CUSTOMERS, type, id))
+        return await instance.get(formQuery(ENDPOINTS.CUSTOMERS, {type, id}))
       } catch (e) {
         console.error(e)
       }
     },
-    create: () => {},
+    create: async (data) => {
+      try {
+        return await instance.post(formQuery(ENDPOINTS.CUSTOMERS), data)
+      } catch (e) {
+        console.error(e)
+      }
+    },
     update: () => {},
-    delete: () => {}
+    delete: async (id) => {
+      try {
+        return await instance.delete(formQuery(ENDPOINTS.CUSTOMERS, { id }))
+      } catch (e) {
+        console.error(e)
+      }
+    }
   },
   projects: {
     get: async (type, id) => {
       try {
-        return await instance.get(formQuery(ENDPOINTS.PROJECTS, type, id))
+        return await instance.get(formQuery(ENDPOINTS.PROJECTS, { type, id }))
       } catch (e) {
         console.error(e)
       }
     },
-    create: () => {},
+    create: async (data) => {
+      try {
+        return await instance.post(formQuery(ENDPOINTS.PROJECTS), data)
+      } catch (e) {
+        console.error(e)
+      }
+    },
     update: () => {},
-    delete: () => {}
+    delete: async (id) => {
+      try {
+        return await instance.delete(formQuery(ENDPOINTS.PROJECTS, { id }))
+      } catch (e) {
+        console.error(e)
+      }
+    }
   },
   tasks: {
     get: async (type, id) => {
       try {
-        return await instance.get(formQuery(ENDPOINTS.TASKS, type, id))
+        return await instance.get(formQuery(ENDPOINTS.TASKS, { type, id }))
       } catch (e) {
         console.error(e)
       }
     },
-    create: () => {},
+    create: async (data) => {
+      try {
+        return await instance.post(formQuery(ENDPOINTS.TASKS), data)
+      } catch (e) {
+        console.error(e)
+      }
+    },
     update: () => {},
-    delete: () => {}
+    delete: async (id) => {
+      try {
+        return await instance.delete(formQuery(ENDPOINTS.TASKS, { id }))
+      } catch (e) {
+        console.error(e)
+      }
+    }
   },
   task_logs: {
     get: async (type, id) => {
       try {
-        return await instance.get(formQuery(ENDPOINTS.TASKLOGS, type, id))
+        return await instance.get(formQuery(ENDPOINTS.TASKLOGS, { type, id }))
       } catch (e) {
         console.error(e)
       }
     },
-    create: () => {},
+    create: async (data) => {
+      try {
+        return await instance.post(formQuery(ENDPOINTS.TASKLOGS), data)
+      } catch (e) {
+        console.error(e)
+      }
+    },
     update: () => {},
-    delete: () => {}
-  },
-  fetchAll: async () => {
-    const users = await API.users.get().data
-    const projects = await API.projects.get().data
-    const tasks = await API.tasks.get().data
-
-    return { users, projects, tasks }
+    delete: async (id) => {
+      try {
+        return await instance.delete(formQuery(ENDPOINTS.TASKLOGS, { id }))
+      } catch (e) {
+        console.error(e)
+      }
+    }
   }
 }
 

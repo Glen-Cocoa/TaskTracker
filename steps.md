@@ -73,13 +73,19 @@
 
 ## FRONT END
 
+### TODO
+[ ] validate input
+[ ] refactor client API util for dryness
+[ ] implement edit fields
+[ ] implement search for related
+
 #### READ
   - [ ] customer
-    - [ ] display name
+    - [x] display name
     - [ ] show related projects
 
   - [ ] project
-    - [ ] display project name
+    - [x] display project name
     - [ ] display related customer
     - [ ] display related tasks
       - [ ] show task id
@@ -100,19 +106,19 @@
 
 ### CREATE
   - [ ] customer
-    - [ ] input name
+    - [x] input name
 
   - [ ] project
-    - [ ] input name
+    - [x] input name
     - [ ] select customer who owns
   
   - [ ] task
     - [ ] select project who owns
-    - [ ] input description
+    - [x] input description
 
 ### DELETE
-  - [ ] delete task
+  - [x] delete task
   
-  - [ ] delete project
+  - [x] delete project
 
-  - [ ] delete customer
+  - [x] delete customer
