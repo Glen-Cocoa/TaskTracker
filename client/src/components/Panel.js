@@ -20,13 +20,13 @@ export default function Panel({ type }) {
   const getItems = ( type ) => {
     switch (type) {
       case 'Customers':
-        return customers;
+        return customers
       case 'Projects':
-        return projects;
+        return projects
       case 'Tasks':
-        return tasks;
+        return tasks
       default:
-        return [];
+        return []
     }
   }
 

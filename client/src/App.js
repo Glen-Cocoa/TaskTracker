@@ -1,16 +1,34 @@
 import React, { useState, useEffect } from 'react'
-import Home from './pages/Home'
+
 import API from './utils/API'
-import ProjectsContext from './contexts/ProjectsContext'
-import CustomersContext from './contexts/CustomersContext'
-import TasksContext from './contexts/TasksContext'
+import Content from './pages/Content'
+import Nav from './components/Nav'
 
 function App() {
   const [tasks, setTasks] = useState([])
   const [projects, setProjects] = useState([])
   const [customers, setCustomers] = useState([])
 
-  const hydratePanels = () => {
+  const [activeCategory, setActiveCategory] = useState('customers')
+
+  const contentMap = { tasks, projects, customers }
+
+  const handleFormSubmit = async (e, data) => {
+    e.preventDefault()
+    if(Object.keys(data).length){
+      const payload = JSON.stringify(data)
+      await API[activeCategory].create(payload)
+      return hydratePage()
+    }
+  }
+
+  const handleDelete = async (target) => {
+    console.log(target)
+    await API[activeCategory].delete(target)
+    return hydratePage()
+  }
+
+  const hydratePage = () => {
     API.customers.get()
       .then((res) => {
         setCustomers(res?.data || [])
@@ -25,17 +43,17 @@ function App() {
     })
   }
 
-  useEffect(hydratePanels, [])
+  useEffect(hydratePage, [])
 
   return (
-    // <CustomersContext.Provider value={{customers, setCustomers}}>
-    //   <ProjectsContext.Provider value={{projects, setProjects}}>
-    //     <TasksContext.Provider value={{tasks, setTasks}} >
-    //       <Home />
-    //     </TasksContext.Provider>
-    //   </ProjectsContext.Provider>
-    // </CustomersContext.Provider>
-    <></>
+    <>
+      <Nav setActiveCategory={setActiveCategory}/>
+      <Content 
+        items={contentMap[activeCategory]} 
+        type={activeCategory} 
+        handleFormSubmit={handleFormSubmit} 
+        handleDelete={handleDelete}/>
+    </>
   )
 }
 
