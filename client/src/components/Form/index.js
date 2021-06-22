@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import ContentContext from '../../contexts/ContentContext'
+import Jumbotron from '../Jumbotron'
+import './styles.css'
 
 export function Input(props) {
   return (
@@ -8,18 +11,45 @@ export function Input(props) {
   )
 }
 
-export function TextArea(props) {
+export function FormBtn(props) {
   return (
-    <div className='form-group'>
-      <textarea className='form-control' rows='20' {...props} />
-    </div>
+    <button {...props} className='btn btn-success'>
+      {props.children}
+    </button>
   )
 }
 
-export function FormBtn(props) {
+export function Form({ setFormObject, formObject }) {
+  const { items, type, handleFormSubmit } = useContext(ContentContext)
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormObject({...formObject, [name]: value})
+  }
+  
+  const getFormFields = (item) => {
+    return item ?
+      Object.keys(item).filter(key => key !== 'id').map(key => {
+        return (
+          <Input name={key} placeholder={key} key={key} onChange={handleInputChange}/>
+        )
+      }) : <>Error Unkown Fields</>
+  }
+
   return (
-    <button {...props} style={{ float: 'right', marginBottom: 10 }} className='btn btn-success'>
-      {props.children}
-    </button>
+    <>
+    <Jumbotron
+      height={100}
+      paddingTop={20}
+      marginTop={40}>
+      <h1>Add new {type}</h1>
+    </Jumbotron>
+    <form className='form'>
+      { items && getFormFields(items[0])}
+        <FormBtn
+          onClick={(e) => { handleFormSubmit(e, formObject) }}
+        >
+          Submit
+        </FormBtn>
+      </form></>
   )
 }

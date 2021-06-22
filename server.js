@@ -8,7 +8,7 @@ import addMiddleware from './server/middleware/index.js'
 
 
 const app = express()
-const PORT = process.env.PORT || 3001 
+const PORT = process.env.PORT || 3001
 
 const models = initModels(connection)
 const router = express.Router()

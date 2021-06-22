@@ -5,7 +5,7 @@
 - [x] configure db with schema
 - [x] configure connection to db
 - [x] seed db
-- [ ] implement user login & auth
+- [x] implement user login & auth
 
 ### READ
   - [x] users
@@ -74,22 +74,23 @@
 ## FRONT END
 
 ### TODO
+[ ] implement edit fields
+[x] implement search for related
+[ ] require login to view page
 [ ] validate input
 [ ] refactor client API util for dryness
-[ ] implement edit fields
-[ ] implement search for related
 
 #### READ
-  - [ ] customer
+  - [x] customer
     - [x] display name
-    - [ ] show related projects
+    - [x] show related projects
 
-  - [ ] project
+  - [x] project
     - [x] display project name
-    - [ ] display related customer
-    - [ ] display related tasks
-      - [ ] show task id
-      - [ ] each task show task_logs
+    - [x] display related customer
+    - [x] display related tasks
+      - [x] show task id
+      - [x] each task show task_logs
 
 ### EDIT
   - [ ] customer
@@ -105,7 +106,7 @@
     - [ ] edit duration_minutes
 
 ### CREATE
-  - [ ] customer
+  - [x] customer
     - [x] input name
 
   - [ ] project

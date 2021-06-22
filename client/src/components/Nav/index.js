@@ -8,7 +8,7 @@ function Nav({ setActiveCategory }) {
         React Task Tracker
       </a>
       <label>Select the Category you wish to view: </label>
-        <select id='category' name='category' defaultValue='customers' onChange={(e) => {setActiveCategory(e.target.value)}}>
+        <select className='selectInput' id='category' name='category' defaultValue='customers' onChange={(e) => {setActiveCategory(e.target.value)}}>
           <option value='tasks' selected>Tasks</option>
           <option value='projects'>Projects</option>
           <option value='customers'>Customers</option>
