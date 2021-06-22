@@ -1,31 +1,36 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import Panel from '../components/Panel'
-import API from '../utils/API'
 
-export default function Home() {
-  const [customerList, setCustomerList] = useState()
-  const [projectList, setProjectList] = useState()
-  const [taskList, setTaskList] = useState()
+function Home() {
 
+  const [activeCategory, setActiveCategory] = useState('Customers')
 
-  useEffect(() => {
-    API.customers.get()
-      .then((result) => setCustomerList(result.data || []))
-      .catch((err) => console.error(err))
-    API.projects.get()
-      .then((result) => setProjectList(result.data || []))
-      .catch((err) => console.error(err))
-    API.tasks.get()
-      .then((result) => setTaskList(result.data || []))
-      .catch((err) => console.error(err))
-  }, [])
-
+  const styles = {
+    container: {
+      paddingTop: '3%'
+    },
+    select: {
+      float:'right'
+    },
+    input: {
+      margin: '15px',
+      float: 'right'
+    }
+  }
 
   return (
-  <>
-    <Panel items={customerList}/>
-    <Panel items={projectList}/>
-    <Panel items={taskList}/>
-  </>
+    <div style={styles.container} className='container'>
+      <div style={styles.input}>
+        <label>Select the Category you wish to view: </label>
+          <select id='category' name='category' defaultValue='Customers' onChange={(e) => {setActiveCategory(e.target.value)}}>
+            <option value="Tasks" selected>Tasks</option>
+            <option value="Projects">Projects</option>
+            <option value="Customers">Customers</option>
+          </select>
+      </div>
+        <Panel type={activeCategory}/>
+    </div>
   )
 }
+
+export default Home
