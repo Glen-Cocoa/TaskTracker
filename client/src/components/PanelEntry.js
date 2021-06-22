@@ -12,7 +12,6 @@ let styles = {
 
 export default function PanelEntry (props) {
   const { id, name, description, type  } = props
-  console.log(props)
   return (
     <div data-id={`${type}-${id}`} style={styles.item}>
       {name || description}

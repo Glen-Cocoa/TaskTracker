@@ -1,7 +1,6 @@
 const makeGetQuery = async (id, type, table) => {
   let result
   if (type) {
-    console.log(type)
     const query = { 
       where: {
         [type]:id

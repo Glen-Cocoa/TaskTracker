@@ -1,21 +1,19 @@
 import express  from 'express'
-import cors from 'cors'
 
 import connection from './server/config/index.js'
 import seed from './server/db/seed.js'
 import initModels from './server/models/index.js'
 import apiRoutes from './server/routes/api/index.js'
+import addMiddleware from './server/middleware/index.js'
 
 
 const app = express()
-const PORT = process.env.PORT || 3001
-
-app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+const PORT = process.env.PORT || 3001 
 
 const models = initModels(connection)
 const router = express.Router()
+
+addMiddleware(app, express, models.Users)
 
 await seed(models, connection)
 router.use('/', apiRoutes(models, router))

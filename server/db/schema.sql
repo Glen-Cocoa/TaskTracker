@@ -3,7 +3,9 @@ use cmm_proj;
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id int NOT NULL,
-  PRIMARY KEY (id)
+    name text,
+    password text,
+    PRIMARY KEY (id)
   );
 
 DROP TABLE IF EXISTS customers;
@@ -44,11 +46,11 @@ CREATE TABLE task_logs (
 
 INSERT INTO users (id)
 VALUES
-  (1),
-  (2),
-  (3),
-  (4),
-  (5);
+  (1, 'Laura', 'password1'),
+  (2, 'Bob', 'password2'),
+  (3, 'Mary', 'password3'),
+  (4, 'Sue', 'password4'),
+  (5, 'Henry', 'password5');
   
 INSERT INTO customers (id, name)
 VALUES

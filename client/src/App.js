@@ -23,7 +23,6 @@ function App() {
   }
 
   const handleDelete = async (target) => {
-    console.log(target)
     await API[activeCategory].delete(target)
     return hydratePage()
   }
