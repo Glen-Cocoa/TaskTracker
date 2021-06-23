@@ -44,7 +44,13 @@ const API = {
         console.error(e)
       }
     },
-    update: () => {},
+    update: async (id, data) => {
+      try {
+        return await instance.put(formQuery(ENDPOINTS.CUSTOMERS, { id }), data)
+      } catch (e) {
+        console.error(e)
+      }
+    },
     delete: async (id) => {
       try {
         return await instance.delete(formQuery(ENDPOINTS.CUSTOMERS, { id }))
@@ -68,7 +74,14 @@ const API = {
         console.error(e)
       }
     },
-    update: () => {},
+    update: async (id, data) => {
+      try {
+        console.log(data)
+        return await instance.put(formQuery(ENDPOINTS.PROJECTS, { id }), data)
+      } catch (e) {
+        console.error(e)
+      }
+    },
     delete: async (id) => {
       try {
         return await instance.delete(formQuery(ENDPOINTS.PROJECTS, { id }))
@@ -92,7 +105,13 @@ const API = {
         console.error(e)
       }
     },
-    update: () => {},
+    update: async (id, data) => {
+      try {
+        return await instance.put(formQuery(ENDPOINTS.TASKS, { id }), data)
+      } catch (e) {
+        console.error(e)
+      }
+    },
     delete: async (id) => {
       try {
         return await instance.delete(formQuery(ENDPOINTS.TASKS, { id }))
@@ -116,7 +135,13 @@ const API = {
         console.error(e)
       }
     },
-    update: () => {},
+    update: async (id, data) => {
+      try {
+        return await instance.put(formQuery(ENDPOINTS.TASKLOGS, { id }), data)
+      } catch (e) {
+        console.error(e)
+      }
+    },
     delete: async (id) => {
       try {
         return await instance.delete(formQuery(ENDPOINTS.TASKLOGS, { id }))

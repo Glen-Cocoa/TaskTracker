@@ -10,11 +10,13 @@ const ContentContext = createContext({
   contentMap: {},
   activeItem: {},
   activeCategory: {},
+  currentData: {},
   formObject: {},
   setFormObject: () => {},
   handleFormSubmit: () => {},
   handleDelete: () => {},
-  handleItemClick: () => {}
+  handleItemClick: () => {},
+  handleEditSave: () => {}
 })
 
 export default ContentContext

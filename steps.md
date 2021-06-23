@@ -74,8 +74,11 @@
 ## FRONT END
 
 ### TODO
-[ ] implement edit fields
+[x] implement edit fields
 [x] implement search for related
+[ ] handle for when all entries are deleted
+[ ] update select to account for task logs
+[ ] refactor save form button to not be gross
 [ ] require login to view page
 [ ] validate input
 [ ] refactor client API util for dryness
@@ -93,14 +96,16 @@
       - [x] each task show task_logs
 
 ### EDIT
-  - [ ] customer
-    - [ ] name
+  - [x] customer
+    - [x] name
 
   - [ ] project 
-    - [ ] name
+    - [x] name
+    - [ ] customer_id
 
   - [ ] task
-    - [ ] description
+    - [x] description
+    - [ ] project_id
   
   - [ ] task_logs
     - [ ] edit duration_minutes

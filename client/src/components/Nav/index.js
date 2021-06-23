@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-function Nav({ setActiveCategory }) {
+function Nav({ setActiveCategory, handleEditClick }) {
   return (
     <nav className='navbar navbar-expand-lg navbar-dark bg-primary'>
       <a className='navbar-brand' href='/'>
@@ -13,6 +13,7 @@ function Nav({ setActiveCategory }) {
           <option value='projects'>Projects</option>
           <option value='customers'>Customers</option>
         </select>
+        <button className='editBtn' onClick={handleEditClick}>Edit</button>
     </nav>
   )
 }
